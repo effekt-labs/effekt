@@ -3,6 +3,8 @@
 
 export * from '@/shared/types'
 export * from '@/animation/types'
+export * from '@/config/types'
+export { defineConfig } from '@/config'
 export * from '@/animate'
 
 import '../../global'

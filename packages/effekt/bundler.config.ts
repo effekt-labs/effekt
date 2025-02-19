@@ -25,22 +25,28 @@ export default defineConfig({
         { find: /^@\/shared/, replacement: '../index.mts' },
       ]),
     },
+    // Config
+    {
+      input: './src/config/index.ts',
+    },
     // Animation
     {
       input: './src/animation/index.ts',
-      externals: [/^@\/shared/, /^@\/utils/],
+      externals: [/^@\/shared/, /^@\/utils/, /^@\/config/],
       paths: resolvePaths([
         { find: /^@\/shared/, replacement: '../shared/index.mjs' },
         { find: /^@\/utils/, replacement: '../utils/index.mjs' },
+        { find: /^@\/config/, replacement: '../config/index.mjs' },
       ]),
     },
     // Main
     {
       input: './src/index.ts',
-      externals: [/^@\/shared/, /^@\/utils/, /^@\/animation/],
+      externals: [/^@\/shared/, /^@\/utils/, /^@\/config/, /^@\/animation/],
       paths: resolvePaths([
         { find: /^@\/shared/, replacement: './shared/index.mjs' },
         { find: /^@\/utils/, replacement: './utils/index.mjs' },
+        { find: /^@\/config/, replacement: './config/index.mjs' },
         { find: /^@\/animation/, replacement: './animation/index.mjs' },
       ]),
       banner,

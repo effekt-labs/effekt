@@ -18,3 +18,5 @@ export const isFunction = (v: any): v is (...args: any[]) => unknown =>
   v instanceof Function
 
 export const isElement = (v: any): v is Element => v instanceof Element
+
+export const isUndefined = (v: any): v is undefined => typeof v === 'undefined'

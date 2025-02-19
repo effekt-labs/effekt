@@ -1,4 +1,12 @@
-import { isNumber, isString, isArray, isObject, composeRegex } from '@/shared'
+import { config } from '@/config'
+import {
+  isNumber,
+  isString,
+  isArray,
+  isObject,
+  isUndefined,
+  composeRegex,
+} from '@/shared'
 import type {
   AnimationOptions,
   AnimationKeyframes,
@@ -37,6 +45,12 @@ const parseKeyframeValue = (key: string, options: GeneratedKeyframe): void => {
       : (value as any)
 }
 
+const parseEffect = <T extends Record<string, any>>(v: T): T =>
+  Object.keys(v).reduce(
+    (acc, k) => (!isUndefined(v[k]) && (acc[k] = v[k]), acc),
+    {} as Record<string, any>,
+  ) as T
+
 export function generateKeyframes(
   options: AnimationOptions,
 ): GeneratedKeyframe[] {
@@ -67,22 +81,25 @@ export function generateKeyframes(
   const keyframes: GeneratedKeyframe[] = []
   const transforms: GeneratedKeyframe[] = []
   const effect = {
-    id,
-    direction,
-    duration,
-    delay,
-    endDelay,
-    playRate,
-    repeat,
-    repeatStart,
-    ease,
-    fillMode,
-    composite,
-    pseudoElement,
-    repeatComposite,
-    offset,
-    rangeStart,
-    rangeEnd,
+    ...config.animation,
+    ...parseEffect({
+      id,
+      direction,
+      duration,
+      delay,
+      endDelay,
+      playRate,
+      repeat,
+      repeatStart,
+      ease,
+      fillMode,
+      composite,
+      pseudoElement,
+      repeatComposite,
+      offset,
+      rangeStart,
+      rangeEnd,
+    }),
   }
 
   for (let i = 0, l = keys.length; i < l; i++) {
@@ -95,7 +112,7 @@ export function generateKeyframes(
 
       const keyframe: GeneratedKeyframe = {
         ...effect,
-        composite: composite || 'add',
+        composite: effect.composite || 'add',
         ...parseObjectValue(value),
         key: 'transform',
       }
