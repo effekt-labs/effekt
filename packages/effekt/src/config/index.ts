@@ -5,6 +5,9 @@ export const config: EffektConfig = {
     autoplay: true,
     commitStyles: true,
   },
+  frame: {
+    fps: 60,
+  },
 }
 
 /**

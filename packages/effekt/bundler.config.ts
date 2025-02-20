@@ -107,5 +107,23 @@ export default defineConfig({
         { find: /^@\/animation/, replacement: '../index.mts' },
       ]),
     },
+    // Frame
+    {
+      input: './src/frame/index.ts',
+      externals: [/^@\/config/, /^@\/shared/],
+      paths: resolvePaths([
+        { find: /^@\/config/, replacement: '../config/index.mjs' },
+        { find: /^@\/shared/, replacement: '../shared/index.mjs' },
+      ]),
+    },
+    {
+      input: './src/frame/driver.ts',
+      externals: ['./'],
+      paths: resolvePaths([{ find: './', replacement: './index.mjs' }]),
+    },
+    {
+      dts: './src/types/frame.ts',
+      output: './dist/frame/index.d.mts',
+    },
   ],
 })
