@@ -41,7 +41,7 @@ export function createAnimation(
 
       for (let kI = 0, kL = keyframes.get(els[0])!.length; kI < kL; kI++) {
         const keyframe = keyframes.get(els[0])![kI]
-        const { key, value, ease, composite, offset } = keyframe
+        const { key, value, ease, composite, offset, id, playRate } = keyframe
 
         const animation = new Animation(
           new KeyframeEffect(
@@ -56,6 +56,9 @@ export function createAnimation(
           ),
           timeline,
         )
+
+        if (id) animation.id = id
+        if (playRate) animation.playbackRate = playRate
 
         if (autoplay) animation.play()
         if (commitStyles) {
