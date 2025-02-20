@@ -1,5 +1,6 @@
 import { generateKeyframes } from './generate-keyframes'
 import { createEffect, setEasing } from './create-effect'
+import { config } from '@/config'
 import { noop, isNumber, isArray } from '@/shared'
 import { getElements, msToSec, secToMs, nextTick } from '@/utils'
 import type {
@@ -15,7 +16,11 @@ export function createAnimation(
   targets: AnimationTargets,
   options: AnimationOptions,
 ): Animation {
-  const { autoplay = true, commitStyles = true, timeline } = options
+  const {
+    autoplay = config.animation?.autoplay,
+    commitStyles = config.animation?.commitStyles,
+    timeline,
+  } = options
 
   const animations: globalThis.Animation[] = []
   let isCompleted: boolean = false
