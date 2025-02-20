@@ -27,6 +27,10 @@
     "./interaction": {
       "types": "./dist/interaction/index.d.mts",
       "import": "./dist/interaction/index.mjs"
+    },
+    "./frame": {
+      "types": "./dist/frame/index.d.mts",
+      "import": "./dist/frame/index.mjs"
     }
   },
   "files": [

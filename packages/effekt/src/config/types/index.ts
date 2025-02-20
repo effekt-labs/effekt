@@ -6,6 +6,12 @@ type ConfigAnimation = Omit<AnimationEffect, 'timeline'> &
 type ConfigFrame = { fps?: number }
 
 export interface EffektConfig {
+  /**
+   * Animation global options.
+   */
   animation?: ConfigAnimation
+  /**
+   * Frame global options.
+   */
   frame?: ConfigFrame
 }
