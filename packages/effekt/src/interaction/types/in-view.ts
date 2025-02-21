@@ -1,5 +1,7 @@
 export type InViewCallback = (entry: IntersectionObserverEntry) => void
 
+export type InView = () => void
+
 type RootMarginString = `${number}${'px' | '%'}`
 export type RootMargin =
   | RootMarginString

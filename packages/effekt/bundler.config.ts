@@ -90,23 +90,6 @@ export default defineConfig({
         { find: /^@\/animation/, replacement: '../index.mts' },
       ]),
     },
-    // Interaction
-    {
-      input: './src/interaction/index.ts',
-      externals: [/^@\/shared/, /^@\/utils/],
-      paths: resolvePaths([
-        { find: /^@\/shared/, replacement: '../shared/index.mjs' },
-        { find: /^@\/utils/, replacement: '../utils/index.mjs' },
-      ]),
-    },
-    {
-      dts: './src/types/interaction.ts',
-      output: './dist/interaction/index.d.mts',
-      externals: [/^@\/animation/],
-      paths: resolvePaths([
-        { find: /^@\/animation/, replacement: '../index.mts' },
-      ]),
-    },
     // Frame
     {
       input: './src/frame/index.ts',
@@ -124,6 +107,26 @@ export default defineConfig({
     {
       dts: './src/types/frame.ts',
       output: './dist/frame/index.d.mts',
+    },
+    // Interaction
+    {
+      input: './src/interaction/index.ts',
+      externals: [/^@\/shared/, /^@\/utils/, /^@\/frame\/driver/],
+      paths: resolvePaths([
+        { find: /^@\/shared/, replacement: '../shared/index.mjs' },
+        { find: /^@\/utils/, replacement: '../utils/index.mjs' },
+        { find: /^@\/frame\/driver/, replacement: '../frame/driver.mjs' },
+      ]),
+    },
+    {
+      dts: './src/types/interaction.ts',
+      output: './dist/interaction/index.d.mts',
+      externals: [/^@\/shared/, /^@\/animation/, /^@\/frame/],
+      paths: resolvePaths([
+        { find: /^@\/shared/, replacement: '../index.mts' },
+        { find: /^@\/animation/, replacement: '../index.mts' },
+        { find: /^@\/frame/, replacement: '../frame/index.mts' },
+      ]),
     },
   ],
 })
