@@ -28,9 +28,9 @@
     "@hypernym/eslint-config": "^3.5.6",
     "@hypernym/prettier-config": "^3.2.2",
     "@hypernym/tsconfig": "^2.5.0",
-    "@types/node": "^22.13.4",
-    "eslint": "^9.20.1",
-    "prettier": "^3.5.1",
+    "@types/node": "^22.13.5",
+    "eslint": "^9.21.0",
+    "prettier": "^3.5.2",
     "typescript": "^5.7.3"
   }
 }
