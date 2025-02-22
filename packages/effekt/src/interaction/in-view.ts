@@ -1,7 +1,7 @@
 import { getElements } from '@/utils'
 import { noop, isFunction } from '@/shared'
 import type { AnimationTargets } from '@/animation/types'
-import type { InViewOptions, InViewCallback } from './types'
+import type { InViewCallback, InViewOptions, InView } from './types'
 
 /**
  * Triggers a callback when the specified elements enter and leave the viewport.
@@ -34,7 +34,7 @@ import type { InViewOptions, InViewCallback } from './types'
  * })
  * ```
  *
- * The function returns a cleanup function that can be invoked to stop observing the elements when needed,
+ * Also, inView returns a cleanup function that can be invoked to stop observing the elements when needed,
  * such as when the component is destroyed or when the observer is no longer required.
  *
  * @example
@@ -43,7 +43,6 @@ import type { InViewOptions, InViewCallback } from './types'
  * const stopInView = inView('.el', ({ target }) => {
  *   animate(target, { opacity: [0, 1] })
  * })
- *
  * // Stops viewport detection
  * stopInView()
  * ```
@@ -52,7 +51,7 @@ export function inView(
   targets: AnimationTargets,
   onEnter: (entry: IntersectionObserverEntry) => void | InViewCallback,
   options: InViewOptions = {},
-): VoidFunction {
+): InView {
   const { root, margin, threshold } = options
 
   const els = getElements(targets)
