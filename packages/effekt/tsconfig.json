@@ -1,0 +1,14 @@
+{
+  "extends": "@hypernym/tsconfig",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@": ["./src"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "*.ts", "*.json"]
+}

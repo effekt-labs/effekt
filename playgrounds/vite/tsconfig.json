@@ -1,0 +1,11 @@
+{
+  "extends": "@hypernym/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "effekt": ["../../packages/effekt/src"],
+      "effekt/*": ["../../packages/effekt/src/*"]
+    }
+  },
+  "references": [{ "path": "../../packages/effekt" }]
+}
