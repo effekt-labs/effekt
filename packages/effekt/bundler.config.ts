@@ -24,6 +24,7 @@ export default defineConfig({
       paths: resolvePaths([
         { find: /^@\/shared/, replacement: '../index.mts' },
       ]),
+      transformers: { dts: { compilerOptions: { composite: false } } },
     },
     // Config
     {
@@ -54,6 +55,7 @@ export default defineConfig({
     {
       dts: './src/types/index.ts',
       output: './dist/index.d.mts',
+      transformers: { dts: { compilerOptions: { composite: false } } },
     },
     // Easing
     {
@@ -71,6 +73,7 @@ export default defineConfig({
       paths: resolvePaths([
         { find: /^@\/shared/, replacement: '../index.mts' },
       ]),
+      transformers: { dts: { compilerOptions: { composite: false } } },
     },
     // Sequence
     {
@@ -89,6 +92,7 @@ export default defineConfig({
       paths: resolvePaths([
         { find: /^@\/animation/, replacement: '../index.mts' },
       ]),
+      transformers: { dts: { compilerOptions: { composite: false } } },
     },
     // Frame
     {
@@ -107,6 +111,7 @@ export default defineConfig({
     {
       dts: './src/types/frame.ts',
       output: './dist/frame/index.d.mts',
+      transformers: { dts: { compilerOptions: { composite: false } } },
     },
     // Interaction
     {
@@ -127,6 +132,7 @@ export default defineConfig({
         { find: /^@\/animation/, replacement: '../index.mts' },
         { find: /^@\/frame/, replacement: '../frame/index.mts' },
       ]),
+      transformers: { dts: { compilerOptions: { composite: false } } },
     },
   ],
 })
