@@ -1,7 +1,11 @@
 import type { EasingFunction } from '@/shared/types'
 import type { FrameDriver } from '@/frame/types'
 
-export type WatchCallback = (progress: number) => void
+export interface WatchInfo {
+  progress: number
+}
+
+export type WatchCallback = (info: WatchInfo) => void
 
 export type Watch = () => void
 

@@ -25,7 +25,7 @@ import type { WatchCallback, WatchOptions, Watch } from './types'
  *
  * const animation = animate('.el', { opacity: [0, 1] })
  *
- * watch(animation, (progress) => {
+ * watch(animation, ({ progress }) => {
  *   // Called every time the animation is updated
  *   console.log(progress)
  * })
@@ -39,8 +39,8 @@ import type { WatchCallback, WatchOptions, Watch } from './types'
  * @example
  *
  * ```ts
- * const stopWatch = watch(animation, (progress) => {
- *   console.log(progress)
+ * const stopWatch = watch(animation, (info) => {
+ *   console.log(info)
  * })
  * // Stops watching
  * stopWatch()
@@ -74,7 +74,7 @@ import type { WatchCallback, WatchOptions, Watch } from './types'
  *   }
  * }
  *
- * watch(animation, (progress) => console.log(progress), { driver: customDriver })
+ * watch(animation, ({ progress }) => console.log(progress), { driver: customDriver })
  * ```
  */
 export function watch(
@@ -102,7 +102,7 @@ export function watch(
 
     if (newProgress !== progress) {
       progress = newProgress
-      callback(ease(progress))
+      callback({ progress: ease(progress) })
     }
   }
 
