@@ -38,14 +38,17 @@ declare global {
         | 'auto'
         | string
         | (
-            | [string | CSSNumericValue]
-            | [string | CSSNumericValue, string | CSSNumericValue]
+            | [string | globalThis.CSSNumericValue]
+            | [
+                string | globalThis.CSSNumericValue,
+                string | globalThis.CSSNumericValue,
+              ]
           )
     })
 
     get subject(): Readonly<Element>
-    get startOffset(): Readonly<CSSNumericValue>
-    get endOffset(): Readonly<CSSNumericValue>
+    get startOffset(): Readonly<globalThis.CSSNumericValue>
+    get endOffset(): Readonly<globalThis.CSSNumericValue>
   }
 }
 
