@@ -1,4 +1,4 @@
-// Inspired by Frame, v0.1.1, MIT License, https://github.com/hypernym-studio/frame
+// Inspired by Hypernym Frame, v0.1.1, MIT License, https://github.com/hypernym-studio/frame
 // Adapted to Effekt, v0.10.0, MIT License, https://github.com/effekt-labs/effekt
 
 import { config } from '@/config'
