@@ -9,13 +9,13 @@ const subMaxIterations = 12
 const bezier = (t: number, a1: number, a2: number): number =>
   (((1.0 - 3.0 * a2 + 3.0 * a1) * t + (3.0 * a2 - 6.0 * a1)) * t + 3.0 * a1) * t
 
-function subdivide(
+const subdivide = (
   aX: number,
   aA: number,
   aB: number,
   mX1: number,
   mX2: number,
-): number {
+): number => {
   let currentX: number
   let currentT: number
   let i = 0
