@@ -4,8 +4,13 @@
   "author": "Ivo Dolenc",
   "description": "Universal interaction platform for the modern web.",
   "license": "MIT",
-  "repository": "effekt-labs/effekt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/effekt-labs/effekt.git",
+    "directory": "packages/effekt"
+  },
   "homepage": "https://github.com/effekt-labs/effekt",
+  "funding": "https://github.com/sponsors/ivodolenc",
   "type": "module",
   "exports": {
     ".": {
@@ -58,7 +63,6 @@
     "format": "prettier --write .",
     "publish:effekt": "npm run build && npm publish"
   },
-  "sideEffects": false,
   "peerDependencies": {
     "@types/node": ">=20.0.0",
     "typescript": ">=5.0.0"
@@ -72,6 +76,6 @@
     }
   },
   "devDependencies": {
-    "@hypernym/bundler": "^0.14.2"
+    "@hypernym/bundler": "^0.14.3"
   }
 }
