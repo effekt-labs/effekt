@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Effekt" src=".assets/cover.gif" />
+  <img alt="Effekt" src="./media/cover.gif" />
 </p>
 
 <h1 align="center">Effekt</h1>
@@ -22,18 +22,6 @@
 
 <br>
 
-<p align="center">
-  <sub>Special Sponsor</sub>
-</p>
-
-<p align="center">
-  <a title="Hypernym Studio" href="https://github.com/hypernym-studio">
-    <img alt="Hypernym Studio" width="200" src=".assets/hypernym-logo.svg">
-  </a>
-</p>
-
-<br>
-
 > [!NOTE]
 >
 > **Effekt** is under active development. While the **API** is solid and mostly complete, some changes may still occur before the first stable release.
@@ -44,17 +32,81 @@
 
 <br>
 
-## Features
+## Core Concepts
 
-- Free & Open Source
-- Ultra-lightweight & Powerful
-- Modular & Fully Tree-Shakeable
-- Framework-Independent
-- Written in TypeScript
-- Native SSR Support
-- No External Dependencies
-- Extremely Easy to Use
-- API-Friendly
+- **Free & Open-source:** Publicly available codebase released under the MIT license.
+- **Small Bundlesize:** Ultra-lightweight and optimized package without extra dependencies.
+- **Tree-Shakeable**: Fully modular and modern system allows you to import only what is needed.
+- **Universal:** Flexible library that works in any front-end environment.
+- **API-Friendly**: Easy-to-use API designed to simplify and improve the developer experience.
+- **Written in TypeScript:** Offers first-class TypeScript support that comes with bundled declarations.
+
+## Library Features
+
+### Core
+
+- Multiple targets
+- Individual transforms
+- Complex value interpolation
+- Animation Promise (async/await)
+- One main object for all options
+- Custom easing and offset for each property
+- Advanced Methods and Events
+- Multiple animation keyframes via array syntax
+- Individual keyframe options via object syntax
+- Stagger animation effect
+- Automatic unit addition
+- Unit conversion
+- Color conversion
+- Global configuration
+
+### Easing
+
+- Modular easing presets and modifiers
+- Customizable spring animations
+
+### Interaction
+
+- InView animations
+- Scroll animations
+- Watch animations
+
+### Frame
+
+- Main frame manager
+- Custom external driver
+
+### Sequence
+
+- Chained multiple animations
+
+### Utils
+
+- Utils and helpers
+
+## Sponsors
+
+<br>
+
+<p align="center">
+  <a title="Hypernym Studio" href="https://github.com/hypernym-studio">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" width="258" srcset="./media/hypernym-logo:dark.svg">
+      <source media="(prefers-color-scheme: light)" width="258" srcset="./media/hypernym-logo:light.svg">
+      <img alt="Hypernym Studio" width="258" src="./media/hypernym-logo:dark.svg">
+    </picture>
+  </a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" width="258" srcset="./media/sponsor-logo:dark.svg">
+    <source media="(prefers-color-scheme: light)" width="258" srcset="./media/sponsor-logo:light.svg">
+    <img alt="Become a Sponsor" width="258" src="./media/sponsor-logo:dark.svg">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" width="258" srcset="./media/sponsor-logo:dark.svg">
+    <source media="(prefers-color-scheme: light)" width="258" srcset="./media/sponsor-logo:light.svg">
+    <img alt="Become a Sponsor" width="258" src="./media/sponsor-logo:dark.svg">
+  </picture>
+</p>
 
 ## Community
 
