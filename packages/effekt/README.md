@@ -25,20 +25,20 @@
 <p align="center">
   <a title="Hypernym Studio" href="https://github.com/hypernym-studio">
     <picture>
-      <source media="(prefers-color-scheme: light)" width="258" srcset="../../media/hypernym-logo:light.svg">
-      <source media="(prefers-color-scheme: dark)" width="258" srcset="../../media/hypernym-logo:dark.svg">
-      <img alt="Hypernym Studio" width="258" src="../../media/hypernym-logo:light.svg">
+      <source media="(prefers-color-scheme: light)" width="240" srcset="../../media/hypernym-logo:light.svg">
+      <source media="(prefers-color-scheme: dark)" width="240" srcset="../../media/hypernym-logo:dark.svg">
+      <img alt="Hypernym Studio" width="240" src="../../media/hypernym-logo:light.svg">
     </picture>
   </a>
   <picture>
-    <source media="(prefers-color-scheme: dark)" width="258" srcset="../../media/sponsor-logo:dark.svg">
-    <source media="(prefers-color-scheme: light)" width="258" srcset="../../media/sponsor-logo:light.svg">
-    <img alt="Become a Sponsor" width="258" src="../../media/sponsor-logo:dark.svg">
+    <source media="(prefers-color-scheme: light)" width="240" srcset="../../media/sponsor-logo:light.svg">
+    <source media="(prefers-color-scheme: dark)" width="240" srcset="../../media/sponsor-logo:dark.svg">
+    <img alt="Become a Sponsor" width="240" src="../../media/sponsor-logo:light.svg">
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" width="258" srcset="../../media/sponsor-logo:dark.svg">
-    <source media="(prefers-color-scheme: light)" width="258" srcset="../../media/sponsor-logo:light.svg">
-    <img alt="Become a Sponsor" width="258" src="../../media/sponsor-logo:dark.svg">
+    <source media="(prefers-color-scheme: light)" width="240" srcset="../../media/sponsor-logo:light.svg">
+    <source media="(prefers-color-scheme: dark)" width="240" srcset="../../media/sponsor-logo:dark.svg">
+    <img alt="Become a Sponsor" width="240" src="../../media/sponsor-logo:light.svg">
   </picture>
 </p>
 
