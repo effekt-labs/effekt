@@ -1,14 +1,13 @@
 import type { AnimationOptions } from '../options'
 import type { AnimationEffect } from '../effect'
 
-// Others
 export type KeyframeValue = number | string
 export type KeyframeArrayValue = [
   KeyframeValue,
   KeyframeValue,
   ...KeyframeValue[],
 ]
-export interface KeyframeObjectValue extends Omit<AnimationEffect, 'timeline'> {
+export type KeyframeObjectValue = Omit<AnimationEffect, 'timeline'> & {
   value: number | string | KeyframeArrayValue
   offset?: AnimationOptions['offset']
 }
@@ -18,36 +17,9 @@ export type KeyframeValues =
   | KeyframeArrayValue
   | KeyframeObjectValue
 
-// Transforms
-export type TransformValue = number | string
-export type TransformArrayValue = [
-  TransformValue,
-  TransformValue,
-  ...TransformValue[],
-]
-export interface TransformObjectValue
-  extends Omit<AnimationEffect, 'timeline'> {
-  value: number | string | TransformArrayValue
-  offset?: AnimationOptions['offset']
-}
-export type TransformValues =
-  | number
-  | string
-  | TransformArrayValue
-  | TransformObjectValue
-
-// Colors
-export type ColorValue = string
-export type ColorArrayValue = [ColorValue, ColorValue, ...ColorValue[]]
-export interface ColorObjectValue extends Omit<AnimationEffect, 'timeline'> {
-  value: string | ColorArrayValue
-  offset?: AnimationOptions['offset']
-}
-export type ColorValues = string | ColorArrayValue | ColorObjectValue
-
-export interface AnimationKeyframes {
-  // Others
+export interface OtherKeyframes {
   opacity?: KeyframeValues
+  fillOpacity?: KeyframeValues
   width?: KeyframeValues
   minWidth?: KeyframeValues
   maxWidth?: KeyframeValues
@@ -74,9 +46,44 @@ export interface AnimationKeyframes {
   letterSpacing?: KeyframeValues
   borderRadius?: KeyframeValues
   borderWidth?: KeyframeValues
-  strokeDashoffset?: KeyframeValues
   filter?: KeyframeValues
-  // Transforms
+  outlineOffset?: KeyframeValues
+  outlineWidth?: KeyframeValues
+  strokeWidth?: KeyframeValues
+  strokeOpacity?: KeyframeValues
+  strokeDashoffset?: KeyframeValues
+  strokeDasharray?: KeyframeValues
+  offsetAnchor?: KeyframeValues
+  offsetDistance?: KeyframeValues
+  offsetPath?: KeyframeValues
+  offsetPosition?: KeyframeValues
+  offsetRotate?: KeyframeValues
+  cx?: KeyframeValues
+  cy?: KeyframeValues
+  d?: KeyframeValues
+  r?: KeyframeValues
+  rx?: KeyframeValues
+  ry?: KeyframeValues
+  clipPath?: KeyframeValues
+}
+
+export type TransformValue = number | string
+export type TransformArrayValue = [
+  TransformValue,
+  TransformValue,
+  ...TransformValue[],
+]
+export type TransformObjectValue = Omit<AnimationEffect, 'timeline'> & {
+  value: number | string | TransformArrayValue
+  offset?: AnimationOptions['offset']
+}
+export type TransformValues =
+  | number
+  | string
+  | TransformArrayValue
+  | TransformObjectValue
+
+export interface TransformKeyframes {
   x?: TransformValues
   y?: TransformValues
   z?: TransformValues
@@ -102,7 +109,17 @@ export interface AnimationKeyframes {
   matrix?: TransformValues
   matrix3d?: TransformValues
   transform?: TransformValues
-  // Colors
+}
+
+export type ColorValue = string
+export type ColorArrayValue = [ColorValue, ColorValue, ...ColorValue[]]
+export type ColorObjectValue = Omit<AnimationEffect, 'timeline'> & {
+  value: string | ColorArrayValue
+  offset?: AnimationOptions['offset']
+}
+export type ColorValues = string | ColorArrayValue | ColorObjectValue
+
+export interface ColorKeyframes {
   color?: ColorValues
   background?: ColorValues
   backgroundColor?: ColorValues
@@ -114,5 +131,12 @@ export interface AnimationKeyframes {
   outlineColor?: ColorValues
   textDecorationColor?: ColorValues
   columnRuleColor?: ColorValues
+  accentColor?: ColorValues
+  caretColor?: ColorValues
   fill?: ColorValues
+  stroke?: ColorValues
 }
+
+export type AnimationKeyframes = OtherKeyframes &
+  TransformKeyframes &
+  ColorKeyframes
