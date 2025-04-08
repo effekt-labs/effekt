@@ -59,6 +59,7 @@
 - Unit conversion
 - Color conversion
 - Global configuration
+- SVG path morph and animations
 
 ### Easing
 
