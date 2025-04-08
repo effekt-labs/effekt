@@ -19,6 +19,7 @@ export interface Animation {
   get timeline(): globalThis.AnimationTimeline | null
   set timeline(t: globalThis.AnimationTimeline | null)
   get playState(): Readonly<globalThis.AnimationPlayState>
-  get progress(): Readonly<number>
+  get progress(): number
+  set progress(t: number)
   get isCompleted(): Readonly<boolean>
 }

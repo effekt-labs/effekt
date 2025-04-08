@@ -41,26 +41,22 @@ export function createAnimation(
 
       for (let kI = 0, kL = keyframes.get(els[0])!.length; kI < kL; kI++) {
         const keyframe = keyframes.get(els[0])![kI]
-        const { key, value, ease, composite, offset, id, playRate } = keyframe
+        const { key, value, ease, composite, offset } = keyframe
 
-        const animation = new Animation(
-          new KeyframeEffect(
-            el,
-            {
-              [key]: value as any,
-              easing: isArray(ease) ? ease.map((e) => setEasing(e)) : undefined,
-              composite: isArray(composite) ? composite : undefined,
-              offset,
-            },
-            createEffect({ index: i, total: l }, keyframe),
-          ),
-          timeline,
+        const animation = el.animate(
+          {
+            [key]: value as any,
+            easing: isArray(ease) ? ease.map((e) => setEasing(e)) : undefined,
+            composite: isArray(composite) ? composite : undefined,
+            offset,
+          },
+          {
+            ...createEffect({ index: i, total: l }, keyframe),
+            timeline,
+          },
         )
 
-        if (id) animation.id = id
-        if (playRate) animation.playbackRate = playRate
-
-        if (autoplay) animation.play()
+        if (!autoplay) animation.pause()
         if (commitStyles) {
           animation.finished
             .then((a) => {
@@ -120,6 +116,10 @@ export function createAnimation(
     get time(): Readonly<number | null> {
       const t = this.value?.currentTime
       return t ? numberish(t) : null
+    },
+    get duration(): Readonly<number> {
+      const d = this.value?.effect?.getComputedTiming().activeDuration
+      return d ? numberish(d) : 0
     },
   }
 
@@ -187,10 +187,13 @@ export function createAnimation(
     get playState(): Readonly<globalThis.AnimationPlayState> {
       return instance.value?.playState || 'idle'
     },
-    get progress(): Readonly<number> {
+    get progress(): number {
       const cT = instance.time
       const eT = instance.endTime
       return cT && eT ? cT / eT : 0
+    },
+    set progress(p) {
+      set('currentTime', secToMs(msToSec(instance.duration) * p))
     },
     get isCompleted(): Readonly<boolean> {
       return isCompleted && !isTimeline
