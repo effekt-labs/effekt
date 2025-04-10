@@ -3,7 +3,7 @@ import type { EffektConfig } from './types'
 export const config: EffektConfig = {
   animation: {
     autoplay: true,
-    commitStyles: true,
+    flow: 'complete',
   },
   frame: {
     fps: 60,

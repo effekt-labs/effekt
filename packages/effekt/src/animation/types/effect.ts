@@ -93,18 +93,6 @@ export interface AnimationEffect {
    */
   repeatComposite?: globalThis.IterationCompositeOperation
   /**
-   * Specifies the animation `timeline` features, inherited by other types:
-   *
-   * - `DocumentTimeline`
-   * - `ScrollTimeline`
-   * - `ViewTimeline`
-   *
-   * @experimental [Browser support](https://developer.mozilla.org/en-US/docs/Web/API/AnimationTimeline) (2025): 74.8%
-   *
-   * @default undefined
-   */
-  timeline?: globalThis.AnimationTimeline | null
-  /**
    * Specifies a pseudo-element selector, such as `::before`.
    *
    * Applies the animation to the selected pseudo-element of the target, instead of the target itself.
@@ -113,15 +101,23 @@ export interface AnimationEffect {
    */
   pseudoElement?: string | null
   /**
-   * Specifies the start of an animation's attachment range along its timeline, i.e. where along the timeline an animation will start.
+   * Specifies the animation `driver`.
    *
    * @default undefined
    */
-  rangeStart?: string
+  driver?: AnimationDriver
   /**
-   * Specifies the end of an animation's attachment range along its timeline, i.e. where along the timeline an animation will end.
+   * Specifies the position where the animation `begins` progressing.
    *
    * @default undefined
    */
-  rangeEnd?: string
+  start?: string
+  /**
+   * Specifies the position where the animation `completes`.
+   *
+   * @default undefined
+   */
+  end?: string
 }
+
+export type AnimationDriver = globalThis.AnimationTimeline | null

@@ -7,7 +7,7 @@ export type KeyframeArrayValue = [
   KeyframeValue,
   ...KeyframeValue[],
 ]
-export type KeyframeObjectValue = Omit<AnimationEffect, 'timeline'> & {
+export type KeyframeObjectValue = Omit<AnimationEffect, 'driver'> & {
   value: number | string | KeyframeArrayValue
   offset?: AnimationOptions['offset']
 }
@@ -73,7 +73,7 @@ export type TransformArrayValue = [
   TransformValue,
   ...TransformValue[],
 ]
-export type TransformObjectValue = Omit<AnimationEffect, 'timeline'> & {
+export type TransformObjectValue = Omit<AnimationEffect, 'driver'> & {
   value: number | string | TransformArrayValue
   offset?: AnimationOptions['offset']
 }
@@ -113,7 +113,7 @@ export interface TransformKeyframes {
 
 export type ColorValue = string
 export type ColorArrayValue = [ColorValue, ColorValue, ...ColorValue[]]
-export type ColorObjectValue = Omit<AnimationEffect, 'timeline'> & {
+export type ColorObjectValue = Omit<AnimationEffect, 'driver'> & {
   value: string | ColorArrayValue
   offset?: AnimationOptions['offset']
 }

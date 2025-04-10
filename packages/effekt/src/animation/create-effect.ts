@@ -45,8 +45,8 @@ export function createEffect(
     composite,
     pseudoElement,
     repeatComposite: iterationComposite,
-    rangeStart,
-    rangeEnd,
+    start: rangeStart,
+    end: rangeEnd,
   } = options
 
   return {

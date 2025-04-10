@@ -15,11 +15,14 @@ export interface AnimationOptions
    */
   autoplay?: boolean
   /**
-   * Specifies whether inline styles should be added to the animated target when the animation ends.
+   * Specifies whether the animation's `flow` mode completes or remains active when the animation ends.
    *
-   * @default true
+   * - `complete` — writes the final animation state into the element's `style` attribute and ends all associated processes.
+   * - `extend` — preserves the animation state, keeping progress and processes for continued activity (requires manual stopping).
+   *
+   * @default 'complete'
    */
-  commitStyles?: boolean
+  flow?: 'complete' | 'extend'
   /**
    * Specifies a number or array of numbers between `0.0` and `1.0`.
    *
