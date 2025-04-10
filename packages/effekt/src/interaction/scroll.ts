@@ -1,16 +1,14 @@
 import { isBrowser, noop } from '@/shared'
 import { clamp, round } from '@/utils'
 import { frameDriver } from '@/frame/driver'
-import type { ScrollCallback, ScrollOptions, ScrollInfo, Scroll } from './types'
-
-const createTimeline = (
-  options: ScrollOptions,
-): globalThis.ScrollTimeline | globalThis.ViewTimeline => {
-  const { source = document.documentElement, subject, axis, inset } = options
-
-  if (subject) return new ViewTimeline({ subject, inset, axis })
-  return new ScrollTimeline({ source, axis })
-}
+import { scrollDriver } from './scroll-driver'
+import type {
+  ScrollCallback,
+  ScrollOptions,
+  ScrollInfo,
+  Scroll,
+  ScrollDriver,
+} from './types'
 
 /**
  * Creates a scroll-linked interactions.
@@ -87,17 +85,16 @@ export function scroll(
 ): Scroll {
   if (!isBrowser) return noop
 
-  const { driver = frameDriver, ease = (p: number) => p } = options
+  const { driver = frameDriver, ease = (p: number) => p, ...sdo } = options
   const { abs } = Math
 
-  let tl: globalThis.ScrollTimeline | globalThis.ViewTimeline | null =
-    createTimeline(options)
+  let sd: ScrollDriver | null = scrollDriver(sdo)
 
   let progress: number
   let direction: ScrollInfo['direction'] = 'Down'
 
   const onFrame = (): void => {
-    const time = tl?.currentTime?.value || 0
+    const time = sd?.currentTime?.value || 0
 
     let newProgress = clamp(0, 1, time / 100)
 
@@ -128,7 +125,7 @@ export function scroll(
   frame.start()
 
   return () => {
-    tl = null
+    sd = null
     frame.stop()
   }
 }

@@ -7,17 +7,17 @@ import type {
   SequenceOptions,
   SequenceEventNames,
 } from './types'
-import type { Animation } from '@/animation/types'
+import type { Animation, AnimationDriver } from '@/animation/types'
 
 export function createSequence(
   animations: SequenceAnimation[],
   options: SequenceOptions = {},
 ): Sequence {
-  const { timeline } = options
+  const { driver } = options
 
   const sequence: Animation[] = []
   let isCompleted: boolean = false
-  let isTimeline: boolean = timeline ? true : false
+  let isDriver: boolean = driver ? true : false
 
   let resolve: (value: globalThis.Animation[][]) => void
   let reject: (value: any) => void
@@ -28,7 +28,7 @@ export function createSequence(
     const animation = createAnimation(targets, {
       autoplay: false,
       ...settings,
-      timeline,
+      driver,
     })
 
     sequence.push(animation)
@@ -74,15 +74,15 @@ export function createSequence(
       resolve = res
       reject = rej
     }),
-    get timeline(): globalThis.AnimationTimeline | null {
-      return sequence[0]?.timeline || null
+    get driver(): AnimationDriver {
+      return sequence[0]?.driver || null
     },
-    set timeline(t) {
-      isTimeline ||= true
-      each((a) => (a.timeline = t))
+    set driver(d) {
+      isDriver ||= true
+      each((a) => (a.driver = d))
     },
     get isCompleted(): Readonly<boolean> {
-      return isCompleted && !isTimeline
+      return isCompleted
     },
   }
 

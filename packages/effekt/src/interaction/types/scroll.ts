@@ -1,5 +1,6 @@
 import type { FrameDriver } from '@/frame/types'
 import type { EasingFunction } from '@/shared/types'
+import type { ScrollDriverOptions } from './scroll-driver'
 
 export interface ScrollInfo {
   progress: number
@@ -13,31 +14,7 @@ export type ScrollCallback = (info: ScrollInfo) => void
 
 export type Scroll = () => void
 
-export type TimelineAxis = 'block' | 'inline' | 'x' | 'y'
-
-export interface ScrollTimelineOptions {
-  source?: Element
-  axis?: TimelineAxis
-}
-
-export interface ViewTimelineOptions {
-  subject?: Element
-  axis?: TimelineAxis
-  inset?:
-    | 'auto'
-    | string
-    | (
-        | [string | globalThis.CSSNumericValue]
-        | [
-            string | globalThis.CSSNumericValue,
-            string | globalThis.CSSNumericValue,
-          ]
-      )
-}
-
-export interface ScrollOptions
-  extends ScrollTimelineOptions,
-    ViewTimelineOptions {
+export interface ScrollOptions extends ScrollDriverOptions {
   /**
    * Specifies optional easing function that transforms the raw, linear progress value into a more dynamic, non-linear custom effect.
    *

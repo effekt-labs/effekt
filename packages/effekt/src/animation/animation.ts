@@ -2,11 +2,12 @@ import { generateKeyframes } from './generate-keyframes'
 import { createEffect, setEasing } from './create-effect'
 import { config } from '@/config'
 import { noop, isNumber, isArray } from '@/shared'
-import { getElements, msToSec, secToMs, nextTick } from '@/utils'
+import { getElements, msToSec, secToMs, nextTick, clamp } from '@/utils'
 import type {
   Animation,
   AnimationTargets,
   AnimationOptions,
+  AnimationDriver,
   AnimationPropertyNames,
   AnimationEventNames,
   GeneratedKeyframe,
@@ -18,13 +19,13 @@ export function createAnimation(
 ): Animation {
   const {
     autoplay = config.animation?.autoplay,
-    commitStyles = config.animation?.commitStyles,
-    timeline,
+    flow = config.animation?.flow,
+    driver,
   } = options
 
   const animations: globalThis.Animation[] = []
   let isCompleted: boolean = false
-  let isTimeline: boolean = timeline ? true : false
+  let isDriver: boolean = driver ? true : false
 
   let resolve: (value: globalThis.Animation[]) => void
   let reject: (value: any) => void
@@ -52,12 +53,12 @@ export function createAnimation(
           },
           {
             ...createEffect({ index: i, total: l }, keyframe),
-            timeline,
+            timeline: driver,
           },
         )
 
         if (!autoplay) animation.pause()
-        if (commitStyles) {
+        if (flow === 'complete') {
           animation.finished
             .then((a) => {
               a.commitStyles()
@@ -97,7 +98,7 @@ export function createAnimation(
 
   const getAnimation = (): globalThis.Animation | null => {
     if (isReady) {
-      if (isTimeline) return animations[0]
+      if (isDriver) return animations[0]
       return animations.reduce((prev, curr) => {
         const pT = prev.effect?.getComputedTiming().endTime as number
         const cT = curr.effect?.getComputedTiming().endTime as number
@@ -177,12 +178,12 @@ export function createAnimation(
     set effect(e) {
       set('effect', e)
     },
-    get timeline(): globalThis.AnimationTimeline | null {
+    get driver(): AnimationDriver {
       return instance.value?.timeline || null
     },
-    set timeline(t) {
-      isTimeline ||= true
-      set('timeline', t)
+    set driver(d) {
+      isDriver ||= true
+      set('timeline', d)
     },
     get playState(): Readonly<globalThis.AnimationPlayState> {
       return instance.value?.playState || 'idle'
@@ -190,13 +191,13 @@ export function createAnimation(
     get progress(): number {
       const cT = instance.time
       const eT = instance.endTime
-      return cT && eT ? cT / eT : 0
+      return clamp(0, 1, cT && eT ? cT / eT : 0)
     },
     set progress(p) {
       set('currentTime', secToMs(msToSec(instance.duration) * p))
     },
     get isCompleted(): Readonly<boolean> {
-      return isCompleted && !isTimeline
+      return isCompleted && flow === 'complete'
     },
   }
 

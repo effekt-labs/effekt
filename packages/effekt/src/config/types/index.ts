@@ -1,7 +1,7 @@
 import type { AnimationOptions, AnimationEffect } from '@/animation/types'
 
-type ConfigAnimation = Omit<AnimationEffect, 'timeline'> &
-  Pick<AnimationOptions, 'autoplay' | 'commitStyles' | 'offset'>
+type ConfigAnimation = Omit<AnimationEffect, 'driver'> &
+  Pick<AnimationOptions, 'autoplay' | 'flow' | 'offset'>
 
 type ConfigFrame = { fps?: number }
 

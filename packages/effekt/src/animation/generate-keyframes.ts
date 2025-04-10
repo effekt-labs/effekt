@@ -56,7 +56,7 @@ export function generateKeyframes(
 ): GeneratedKeyframe[] {
   const {
     autoplay,
-    commitStyles,
+    flow,
     id,
     direction,
     duration,
@@ -70,10 +70,10 @@ export function generateKeyframes(
     composite,
     pseudoElement,
     repeatComposite,
-    timeline,
     offset,
-    rangeStart,
-    rangeEnd,
+    driver,
+    start,
+    end,
     ...props
   } = options
 
@@ -97,8 +97,8 @@ export function generateKeyframes(
       pseudoElement,
       repeatComposite,
       offset,
-      rangeStart,
-      rangeEnd,
+      start,
+      end,
     }),
   }
 
