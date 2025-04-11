@@ -1,2 +1,2 @@
-export * from './options'
+export * from './shared'
 export * from './animation'

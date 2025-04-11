@@ -1,11 +1,4 @@
-import type { AnimationEffect } from './effect'
-import type { AnimationKeyframes } from './keyframes'
-import type { AnimationEvents } from './events'
-
-export interface AnimationOptions
-  extends AnimationKeyframes,
-    AnimationEvents,
-    AnimationEffect {
+export interface AnimationOptionsCustom {
   /**
    * Specifies whether the animation will play automatically when `animate()` is called.
    *
@@ -34,19 +27,3 @@ export interface AnimationOptions
    */
   offset?: number | (number | null)[]
 }
-
-export type AnimationPropertyNames =
-  | 'startTime'
-  | 'currentTime'
-  | 'playbackRate'
-  | 'effect'
-  | 'timeline'
-
-export type AnimationEventNames =
-  | 'play'
-  | 'pause'
-  | 'reverse'
-  | 'cancel'
-  | 'finish'
-
-export type AnimationPromise = Promise<globalThis.Animation[]>

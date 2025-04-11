@@ -1,4 +1,6 @@
-export interface AnimationEvents {
+import type { WebAnimation } from '../animation'
+
+export interface AnimationOptionsEvents {
   /**
    * Triggered when animations start.
    *
@@ -8,7 +10,7 @@ export interface AnimationEvents {
    *
    * @default undefined
    */
-  onStart?: (animations: globalThis.Animation[]) => void
+  onStart?: (animations: WebAnimation[]) => void
   /**
    * Triggered when animations are played.
    *
@@ -18,7 +20,7 @@ export interface AnimationEvents {
    *
    * @default undefined
    */
-  onPlay?: (animations: globalThis.Animation[]) => void
+  onPlay?: (animations: WebAnimation[]) => void
   /**
    * Triggered when animations are paused.
    *
@@ -28,7 +30,7 @@ export interface AnimationEvents {
    *
    * @default undefined
    */
-  onPause?: (animations: globalThis.Animation[]) => void
+  onPause?: (animations: WebAnimation[]) => void
   /**
    * Triggered when animations are reversed.
    *
@@ -38,7 +40,7 @@ export interface AnimationEvents {
    *
    * @default undefined
    */
-  onReverse?: (animations: globalThis.Animation[]) => void
+  onReverse?: (animations: WebAnimation[]) => void
   /**
    * Triggered when animations are stopped.
    *
@@ -48,7 +50,7 @@ export interface AnimationEvents {
    *
    * @default undefined
    */
-  onStop?: (animations: globalThis.Animation[]) => void
+  onStop?: (animations: WebAnimation[]) => void
   /**
    * Triggered when animations complete their run.
    *
@@ -58,7 +60,7 @@ export interface AnimationEvents {
    *
    * @default undefined
    */
-  onComplete?: (animations: globalThis.Animation[]) => void
+  onComplete?: (animations: WebAnimation[]) => void
   /**
    * Triggered when animations are canceled due to error.
    *

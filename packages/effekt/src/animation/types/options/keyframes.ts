@@ -1,5 +1,5 @@
-import type { AnimationOptions } from '../options'
-import type { AnimationEffect } from '../effect'
+import type { AnimationOptionsEffect } from './effect'
+import type { AnimationOptionsCustom } from './custom'
 
 export type KeyframeValue = number | string
 export type KeyframeArrayValue = [
@@ -7,9 +7,9 @@ export type KeyframeArrayValue = [
   KeyframeValue,
   ...KeyframeValue[],
 ]
-export type KeyframeObjectValue = Omit<AnimationEffect, 'driver'> & {
+export type KeyframeObjectValue = Omit<AnimationOptionsEffect, 'driver'> & {
   value: number | string | KeyframeArrayValue
-  offset?: AnimationOptions['offset']
+  offset?: AnimationOptionsCustom['offset']
 }
 export type KeyframeValues =
   | number
@@ -17,7 +17,7 @@ export type KeyframeValues =
   | KeyframeArrayValue
   | KeyframeObjectValue
 
-export interface OtherKeyframes {
+export interface AnimationKeyframesOther {
   opacity?: KeyframeValues
   fillOpacity?: KeyframeValues
   width?: KeyframeValues
@@ -73,9 +73,9 @@ export type TransformArrayValue = [
   TransformValue,
   ...TransformValue[],
 ]
-export type TransformObjectValue = Omit<AnimationEffect, 'driver'> & {
+export type TransformObjectValue = Omit<AnimationOptionsEffect, 'driver'> & {
   value: number | string | TransformArrayValue
-  offset?: AnimationOptions['offset']
+  offset?: AnimationOptionsCustom['offset']
 }
 export type TransformValues =
   | number
@@ -83,7 +83,7 @@ export type TransformValues =
   | TransformArrayValue
   | TransformObjectValue
 
-export interface TransformKeyframes {
+export interface AnimationKeyframesTransform {
   x?: TransformValues
   y?: TransformValues
   z?: TransformValues
@@ -113,13 +113,13 @@ export interface TransformKeyframes {
 
 export type ColorValue = string
 export type ColorArrayValue = [ColorValue, ColorValue, ...ColorValue[]]
-export type ColorObjectValue = Omit<AnimationEffect, 'driver'> & {
+export type ColorObjectValue = Omit<AnimationOptionsEffect, 'driver'> & {
   value: string | ColorArrayValue
-  offset?: AnimationOptions['offset']
+  offset?: AnimationOptionsCustom['offset']
 }
 export type ColorValues = string | ColorArrayValue | ColorObjectValue
 
-export interface ColorKeyframes {
+export interface AnimationKeyframesColor {
   color?: ColorValues
   background?: ColorValues
   backgroundColor?: ColorValues
@@ -137,6 +137,12 @@ export interface ColorKeyframes {
   stroke?: ColorValues
 }
 
-export type AnimationKeyframes = OtherKeyframes &
-  TransformKeyframes &
-  ColorKeyframes
+export type AnimationOptionsKeyframes = AnimationKeyframesOther &
+  AnimationKeyframesTransform &
+  AnimationKeyframesColor
+
+export interface GeneratedKeyframe extends AnimationOptionsEffect {
+  key: string
+  value: AnimationOptionsKeyframes[keyof AnimationOptionsKeyframes]
+  offset?: AnimationOptionsCustom['offset']
+}

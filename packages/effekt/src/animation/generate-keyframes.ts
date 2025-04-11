@@ -9,7 +9,7 @@ import {
 } from '@/shared'
 import type {
   AnimationOptions,
-  AnimationKeyframes,
+  AnimationOptionsKeyframes,
   GeneratedKeyframe,
 } from './types'
 
@@ -25,7 +25,7 @@ const rgxIsTransform = composeRegex(
 )
 
 const parseObjectValue = (
-  value: AnimationKeyframes[keyof AnimationKeyframes],
+  value: AnimationOptionsKeyframes[keyof AnimationOptionsKeyframes],
 ) => (isObject(value) && !isArray(value) && value) || { value }
 
 const setUnit = (key: string, value: number | string, prop: string): string => {
@@ -77,7 +77,7 @@ export function generateKeyframes(
     ...props
   } = options
 
-  const keys = Object.keys(props) as (keyof AnimationKeyframes)[]
+  const keys = Object.keys(props) as (keyof AnimationOptionsKeyframes)[]
   const keyframes: GeneratedKeyframe[] = []
   const transforms: GeneratedKeyframe[] = []
   const effect = {
@@ -131,7 +131,7 @@ export function generateKeyframes(
     }
   }
 
-  transforms.sort((a, b) => (a.duration as number) - (b.duration as number))
+  transforms.sort((a, b) => a.duration! - b.duration!)
 
   return [...transforms, ...keyframes]
 }

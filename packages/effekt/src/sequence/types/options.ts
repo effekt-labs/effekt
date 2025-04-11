@@ -3,6 +3,7 @@ import type {
   AnimationTargets,
   AnimationOptions,
   AnimationDriver,
+  WebAnimation,
 } from '@/animation/types'
 
 export type SequenceAnimation = [
@@ -26,4 +27,4 @@ export type SequenceEventNames =
   | 'complete'
   | 'cancel'
 
-export type SequencePromise = Promise<globalThis.Animation[][]>
+export type SequencePromise = Promise<WebAnimation[][]>

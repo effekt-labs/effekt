@@ -10,7 +10,10 @@ import type {
   AnimationDriver,
   AnimationPropertyNames,
   AnimationEventNames,
+  AnimationEffect,
+  AnimationPlayState,
   GeneratedKeyframe,
+  WebAnimation,
 } from './types'
 
 export function createAnimation(
@@ -23,11 +26,11 @@ export function createAnimation(
     driver,
   } = options
 
-  const animations: globalThis.Animation[] = []
+  const animations: WebAnimation[] = []
   let isCompleted: boolean = false
   let isDriver: boolean = driver ? true : false
 
-  let resolve: (value: globalThis.Animation[]) => void
+  let resolve: (value: WebAnimation[]) => void
   let reject: (value: any) => void
 
   const els = getElements(targets)
@@ -73,36 +76,31 @@ export function createAnimation(
 
   let isReady: boolean = els.length > 0
 
-  const each = (callback: (a: globalThis.Animation) => void): void => {
+  const each = (callback: (a: WebAnimation) => void): void => {
     for (let i = 0, l = animations.length; i < l; i++) callback(animations[i])
   }
 
-  const set = <
-    T extends globalThis.Animation,
-    K extends AnimationPropertyNames,
-  >(
+  const set = <T extends WebAnimation, K extends AnimationPropertyNames>(
     name: AnimationPropertyNames,
     value: T[K],
   ): void => each((k) => (k[name] = value as any))
 
   const run = (name: AnimationEventNames): void => each((a) => a[name]())
 
-  const call = (
-    callback?: (animations: globalThis.Animation[]) => void,
-  ): void => {
+  const call = (callback?: (animations: WebAnimation[]) => void): void => {
     if (isReady) callback?.(animations)
   }
 
-  const numberish = (v: globalThis.CSSNumberish): number =>
+  const numberish = (v: globalThis.CSSNumberish | number): number =>
     isNumber(v) ? v : (v as globalThis.CSSUnitValue).value
 
-  const getAnimation = (): globalThis.Animation | null => {
+  const getAnimation = (): WebAnimation | null => {
     if (isReady) {
       if (isDriver) return animations[0]
       return animations.reduce((prev, curr) => {
-        const pT = prev.effect?.getComputedTiming().endTime as number
-        const cT = curr.effect?.getComputedTiming().endTime as number
-        return numberish(pT) > numberish(cT) ? prev : curr
+        const pT = prev.effect?.getComputedTiming().endTime
+        const cT = curr.effect?.getComputedTiming().endTime
+        return numberish(pT!) > numberish(cT!) ? prev : curr
       })
     }
     return null
@@ -172,7 +170,7 @@ export function createAnimation(
     set playRate(r) {
       set('playbackRate', r)
     },
-    get effect(): globalThis.AnimationEffect | null {
+    get effect(): AnimationEffect | null {
       return instance.value?.effect || null
     },
     set effect(e) {
@@ -185,7 +183,7 @@ export function createAnimation(
       isDriver ||= true
       set('timeline', d)
     },
-    get playState(): Readonly<globalThis.AnimationPlayState> {
+    get playState(): Readonly<AnimationPlayState> {
       return instance.value?.playState || 'idle'
     },
     get progress(): number {

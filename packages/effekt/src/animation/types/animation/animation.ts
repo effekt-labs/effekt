@@ -1,5 +1,9 @@
-import type { AnimationPromise } from './options'
-import type { AnimationDriver } from './effect'
+import type {
+  AnimationPromise,
+  AnimationEffect,
+  AnimationDriver,
+  AnimationPlayState,
+} from './shared'
 
 export interface Animation {
   play(): void
@@ -15,11 +19,11 @@ export interface Animation {
   set time(t: number)
   get playRate(): number
   set playRate(r: number)
-  get effect(): globalThis.AnimationEffect | null
-  set effect(e: globalThis.AnimationEffect | null)
+  get effect(): AnimationEffect
+  set effect(e: AnimationEffect)
   get driver(): AnimationDriver
   set driver(d: AnimationDriver)
-  get playState(): Readonly<globalThis.AnimationPlayState>
+  get playState(): Readonly<AnimationPlayState>
   get progress(): number
   set progress(t: number)
   get isCompleted(): Readonly<boolean>

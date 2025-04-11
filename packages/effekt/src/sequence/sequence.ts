@@ -7,7 +7,11 @@ import type {
   SequenceOptions,
   SequenceEventNames,
 } from './types'
-import type { Animation, AnimationDriver } from '@/animation/types'
+import type {
+  Animation,
+  AnimationDriver,
+  WebAnimation,
+} from '@/animation/types'
 
 export function createSequence(
   animations: SequenceAnimation[],
@@ -19,7 +23,7 @@ export function createSequence(
   let isCompleted: boolean = false
   let isDriver: boolean = driver ? true : false
 
-  let resolve: (value: globalThis.Animation[][]) => void
+  let resolve: (value: WebAnimation[][]) => void
   let reject: (value: any) => void
 
   for (let i = 0, l = animations.length; i < l; i++) {
