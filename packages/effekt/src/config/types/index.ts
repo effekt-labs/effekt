@@ -1,6 +1,9 @@
-import type { AnimationOptions, AnimationEffect } from '@/animation/types'
+import type {
+  AnimationOptions,
+  AnimationOptionsEffect,
+} from '@/animation/types'
 
-type ConfigAnimation = Omit<AnimationEffect, 'driver'> &
+type ConfigAnimation = Omit<AnimationOptionsEffect, 'driver'> &
   Pick<AnimationOptions, 'autoplay' | 'flow' | 'offset'>
 
 type ConfigFrame = { fps?: number }

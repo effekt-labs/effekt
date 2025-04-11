@@ -1,6 +1,14 @@
 import type { DelayFunction, EasingFunction } from '@/shared/types'
+import type {
+  PlaybackDirection,
+  FillMode,
+  CompositeOperation,
+  CompositeOperationOrAuto,
+  RepeatCompositeOperation,
+} from './shared'
+import type { AnimationDriver } from '../animation'
 
-export interface AnimationEffect {
+export interface AnimationOptionsEffect {
   /**
    * Specifies a unique property that references the animation.
    *
@@ -17,7 +25,7 @@ export interface AnimationEffect {
    *
    * @default undefined
    */
-  direction?: globalThis.PlaybackDirection
+  direction?: PlaybackDirection
   /**
    * Specifies the playback rate of the animation.
    *
@@ -71,7 +79,7 @@ export interface AnimationEffect {
    *
    * @default 'both'
    */
-  fillMode?: globalThis.FillMode
+  fillMode?: FillMode
   /**
    * Specifies the mathematical function used in the interpolation between the `start` and `end` keyframes.
    *
@@ -83,15 +91,13 @@ export interface AnimationEffect {
    *
    * @default undefined
    */
-  composite?:
-    | globalThis.CompositeOperation
-    | globalThis.CompositeOperationOrAuto[]
+  composite?: CompositeOperation | CompositeOperationOrAuto[]
   /**
    * Determines how values build from iteration to iteration in this animation
    *
    * @default undefined
    */
-  repeatComposite?: globalThis.IterationCompositeOperation
+  repeatComposite?: RepeatCompositeOperation
   /**
    * Specifies a pseudo-element selector, such as `::before`.
    *
@@ -119,5 +125,3 @@ export interface AnimationEffect {
    */
   end?: string
 }
-
-export type AnimationDriver = globalThis.AnimationTimeline | null

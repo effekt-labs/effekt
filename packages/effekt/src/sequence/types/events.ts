@@ -1,4 +1,4 @@
-import type { Animation } from '@/animation/types'
+import type { Animation, WebAnimation } from '@/animation/types'
 
 export interface SequenceEvents {
   /**
@@ -50,7 +50,7 @@ export interface SequenceEvents {
    *
    * @default undefined
    */
-  onComplete?: (animations: globalThis.Animation[][]) => void
+  onComplete?: (animations: WebAnimation[][]) => void
   /**
    * Triggered when the sequence is canceled due to error.
    *
