@@ -98,9 +98,9 @@ export function createAnimation(
     if (isReady) {
       if (isDriver) return animations[0]
       return animations.reduce((prev, curr) => {
-        const pT = prev.effect?.getComputedTiming().endTime
-        const cT = curr.effect?.getComputedTiming().endTime
-        return numberish(pT!) > numberish(cT!) ? prev : curr
+        const pT = numberish(prev.effect?.getComputedTiming().endTime || 0)
+        const cT = numberish(curr.effect?.getComputedTiming().endTime || 0)
+        return pT > cT ? prev : curr
       })
     }
     return null
@@ -108,17 +108,11 @@ export function createAnimation(
 
   const instance = {
     value: getAnimation(),
-    get endTime(): Readonly<number | null> {
-      const t = this.value?.effect?.getComputedTiming().endTime
-      return t ? numberish(t) : null
+    get time(): Readonly<number> {
+      return numberish(this.value?.currentTime || 0)
     },
-    get time(): Readonly<number | null> {
-      const t = this.value?.currentTime
-      return t ? numberish(t) : null
-    },
-    get duration(): Readonly<number> {
-      const d = this.value?.effect?.getComputedTiming().activeDuration
-      return d ? numberish(d) : 0
+    get endTime(): Readonly<number> {
+      return numberish(this.value?.effect?.getComputedTiming().endTime || 0)
     },
   }
 
@@ -159,7 +153,7 @@ export function createAnimation(
       set('startTime', secToMs(t))
     },
     get time(): number {
-      return msToSec(instance.time || 0)
+      return msToSec(instance.time)
     },
     set time(t) {
       set('currentTime', secToMs(t))
@@ -187,12 +181,10 @@ export function createAnimation(
       return instance.value?.playState || 'idle'
     },
     get progress(): number {
-      const cT = instance.time
-      const eT = instance.endTime
-      return clamp(0, 1, cT && eT ? cT / eT : 0)
+      return clamp(0, 1, instance.time / instance.endTime)
     },
     set progress(p) {
-      set('currentTime', secToMs(msToSec(instance.duration) * p))
+      set('currentTime', secToMs(msToSec(instance.endTime) * p))
     },
     get isCompleted(): Readonly<boolean> {
       return isCompleted && flow === 'complete'
