@@ -79,7 +79,7 @@ export function createSequence(
       reject = rej
     }),
     get driver(): AnimationDriver {
-      return sequence[0]?.driver || null
+      return sequence[0]?.driver
     },
     set driver(d) {
       isDriver ||= true
