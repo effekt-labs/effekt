@@ -20,9 +20,10 @@ export default defineConfig({
     {
       dts: './src/types/utils.ts',
       output: './dist/utils/index.d.mts',
-      externals: [/^@\/shared/],
+      externals: [/^@\/shared/, /^@\/animation/],
       paths: resolvePaths([
         { find: /^@\/shared/, replacement: '../index.mts' },
+        { find: /^@\/animation/, replacement: '../index.mts' },
       ]),
       transformers: { dts: { compilerOptions: { composite: false } } },
     },
