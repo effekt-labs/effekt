@@ -58,9 +58,6 @@
   ],
   "scripts": {
     "build": "hyperbundler",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write .",
     "publish:effekt": "npm run build && npm publish"
   },
   "peerDependencies": {
