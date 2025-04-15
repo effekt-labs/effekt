@@ -1,3 +1,5 @@
+export type AnimationTarget = string | Element | null
+
 export type AnimationTargets =
   | string
   | Element
