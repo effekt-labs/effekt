@@ -1,16 +1,7 @@
 import { secToMs, round } from '@/utils'
-import { isFunction, isArray } from '@/shared'
+import { isFunction, isArray, setDelay, setRepeat } from '@/shared'
 import type { GeneratedKeyframe } from './types'
-import type { DelayFunction, EasingFunction } from '@/shared/types'
-
-const setDelay = (
-  delay: number | DelayFunction,
-  index: number,
-  total: number,
-): number => secToMs(isFunction(delay) ? delay(index, total) : delay)
-
-const setRepeat = (repeat: number): number =>
-  repeat === Infinity ? 10000 : repeat + 1
+import type { EasingFunction } from '@/shared/types'
 
 const parseEasing = (easing: EasingFunction, points: number = 50): string =>
   `linear(${[...Array(points).keys()]
