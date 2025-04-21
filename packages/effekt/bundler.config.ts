@@ -8,6 +8,10 @@ export default defineConfig({
     // Shared
     {
       input: './src/shared/index.ts',
+      externals: [/^@\/utils/],
+      paths: resolvePaths([
+        { find: /^@\/utils/, replacement: '../utils/index.mjs' },
+      ]),
     },
     // Utils
     {
