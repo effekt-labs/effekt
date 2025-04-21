@@ -4,7 +4,7 @@
  * Ensures the callback is executed after the current call stack has cleared and after the current frame has been rendered,
  * effectively allowing you to defer execution of the callback until the next event loop.
  *
- * This can be useful for:
+ * Use Cases:
  *
  * - Deferring an operation until after the DOM has been painted.
  * - Allowing the browser to complete its current tasks (e.g., rendering).

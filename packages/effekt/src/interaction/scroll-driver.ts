@@ -6,6 +6,7 @@ import type { ScrollDriverOptions, ScrollDriver } from './types'
  * Monitors a custom scrollable area or a specified target and maps the scrolling progress to the animation progress.
  *
  * Use Cases:
+ *
  * - Reveal Effects: Animates specified targets as the user scrolls.
  * - Custom Scroller: Drives animations based on scroll progress within a custom container.
  * - Scroll Direction: Creates vertical or horizontal scroll interactions.
