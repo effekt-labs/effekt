@@ -3,11 +3,11 @@ import type {
   AnimationKeyframesTransform,
   AnimationKeyframesColor,
 } from '@/animation/types'
+import type { SetRecordValues } from '@/shared/types'
 
-type SetValues<T, Values> = {
-  [K in keyof T]: Values
-}
-
-export type SetOptions = SetValues<AnimationKeyframesOther, number | string> &
-  SetValues<AnimationKeyframesTransform, number | string> &
-  SetValues<AnimationKeyframesColor, string>
+export type SetOptions = SetRecordValues<
+  AnimationKeyframesOther,
+  number | string
+> &
+  SetRecordValues<AnimationKeyframesTransform, number | string> &
+  SetRecordValues<AnimationKeyframesColor, string>
