@@ -1,5 +1,5 @@
-// Inspired by Hypernym Frame, v0.1.1, MIT License, https://github.com/hypernym-studio/frame
-// Adapted to Effekt, v0.10.0, MIT License, https://github.com/effekt-labs/effekt
+// Inspired by Hypernym Frame, v0.1.4, MIT License, https://github.com/hypernym-studio/frame
+// Adapted to Effekt, v0.11.0, MIT License, https://github.com/effekt-labs/effekt
 
 import { config } from '@/config'
 import { isBrowser } from '@/shared'
@@ -31,10 +31,10 @@ export function createFrame(): Frame {
   let isPaused: boolean = false
 
   const frameInterval: number = 1000 / (fps || 60)
+  const maxDeltaTime: number = 40
   let lastFrameTime: number = 0
   let lastPauseTime: number | null = null
   let totalPausedTime: number = 0
-  let useFrameInterval: boolean = true
 
   let state: FrameState = defaultState()
 
@@ -107,20 +107,28 @@ export function createFrame(): Frame {
     }
   }
 
-  const runFrame = (timestamp: number): void => {
-    const time = timestamp - totalPausedTime
+  const runFrame = (): void => {
+    const now = performance.now()
+    const time = now - totalPausedTime
+
     shouldRunTicker = loops.size > 0
 
     if (fps) {
       const delta = time - lastFrameTime
       if (delta < frameInterval) {
-        runTicker()
+        if (!isPaused) runTicker()
         return
       }
       lastFrameTime = time - (delta % frameInterval)
+      state.delta = frameInterval
+    } else {
+      state.delta =
+        state.timestamp === 0
+          ? frameInterval
+          : Math.min(Math.max(time - state.timestamp, 1), maxDeltaTime)
+      lastFrameTime = time
     }
 
-    state.delta = useFrameInterval ? frameInterval : time - state.timestamp
     state.timestamp = time
     state.isPaused = isPaused
 
@@ -130,10 +138,8 @@ export function createFrame(): Frame {
 
     state.isRunning = false
 
-    if (shouldRunTicker && !isPaused) {
-      useFrameInterval = false
-      runTicker()
-    } else cancelTicker()
+    if (shouldRunTicker && !isPaused) runTicker()
+    else cancelTicker()
   }
 
   const frame: Frame = {
@@ -178,7 +184,7 @@ export function createFrame(): Frame {
       options: PhaseScheduleOptions = {},
     ) => {
       if (!shouldRunTicker) {
-        useFrameInterval = true
+        shouldRunTicker = true
         lastFrameTime = performance.now()
         runTicker()
       }
