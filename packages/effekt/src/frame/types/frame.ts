@@ -36,4 +36,5 @@ export type Frame = {
   cancel: (callback: PhaseCallback) => void
   clear: () => void
   get state(): Readonly<FrameState>
+  get activeLoops(): Readonly<number>
 } & FramePhases
