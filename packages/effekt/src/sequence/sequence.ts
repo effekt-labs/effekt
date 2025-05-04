@@ -1,5 +1,4 @@
 import { noop } from '@/shared'
-import { nextTick } from '@/utils'
 import { createAnimation } from '@/animation'
 import type {
   Sequence,
@@ -98,13 +97,13 @@ export function createSequence(
     Promise.all(sequence.map((a) => a.completed))
       .then((a) => {
         isCompleted = true
-        nextTick(() => {
+        queueMicrotask(() => {
           resolve?.(a)
           options.onComplete?.(a)
         })
       })
       .catch((err) => {
-        nextTick(() => {
+        queueMicrotask(() => {
           reject?.(err)
           options.onCancel?.(err)
         })

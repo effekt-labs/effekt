@@ -2,7 +2,7 @@ import { generateKeyframes } from './generate-keyframes'
 import { createEffect, setEasing } from './create-effect'
 import { config } from '@/config'
 import { noop, isNumber, isArray } from '@/shared'
-import { getElements, msToSec, secToMs, nextTick, clamp } from '@/utils'
+import { getElements, msToSec, secToMs, clamp } from '@/utils'
 import type {
   Animation,
   AnimationTargets,
@@ -199,13 +199,13 @@ export function createAnimation(
     Promise.all(animations.map((a) => a.finished))
       .then((a) => {
         isCompleted = true
-        nextTick(() => {
+        queueMicrotask(() => {
           resolve?.(a)
           options.onComplete?.(a)
         })
       })
       .catch((err) => {
-        nextTick(() => {
+        queueMicrotask(() => {
           reject?.(err)
           options.onCancel?.(err)
         })
