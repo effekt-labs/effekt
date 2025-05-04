@@ -6,7 +6,7 @@ import type {
 type ConfigAnimation = Omit<AnimationOptionsEffect, 'driver'> &
   Pick<AnimationOptions, 'autoplay' | 'flow' | 'offset'>
 
-type ConfigFrame = { fps?: number }
+type ConfigFrame = { fps?: number | false }
 
 export interface EffektConfig {
   /**

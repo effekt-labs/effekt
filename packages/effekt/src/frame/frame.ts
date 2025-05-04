@@ -1,5 +1,5 @@
-// Inspired by Hypernym Frame, v0.2.0, MIT License, https://github.com/hypernym-studio/frame
-// Adapted to Effekt, v0.11.0, MIT License, https://github.com/effekt-labs/effekt
+// Inspired by Hypernym Frame, v0.2.1, MIT License, https://github.com/hypernym-studio/frame
+// Adapted to Effekt, v0.12.0, MIT License, https://github.com/effekt-labs/effekt
 
 import { config } from '@/config'
 import { isBrowser } from '@/shared'
@@ -20,7 +20,7 @@ const defaultState = (): FrameState => ({
 })
 
 export function createFrame(): Frame {
-  let fps: number | undefined = config.frame?.fps
+  let fps: number | false | undefined = config.frame?.fps
 
   const framePhases: PhaseIDs[] = ['read', 'update', 'render']
   const phases = {} as Record<PhaseIDs, Phase>
