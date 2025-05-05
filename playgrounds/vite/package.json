@@ -13,7 +13,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.5",
     "tailwindcss": "^4.1.5",
-    "vite": "^6.3.4",
+    "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
