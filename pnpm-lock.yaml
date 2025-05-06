@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@hypernym/bundler':
         specifier: ^0.14.3
-        version: 0.14.3(@types/node@22.15.3)(typescript@5.8.3)
+        version: 0.14.3(@types/node@22.15.12)(typescript@5.8.3)
       '@hypernym/eslint-config':
         specifier: ^3.6.0
         version: 3.6.0(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3)
@@ -19,10 +19,10 @@ importers:
         version: 3.2.3(prettier@3.5.3)
       '@hypernym/tsconfig':
         specifier: ^2.6.0
-        version: 2.6.0(@types/node@22.15.3)(typescript@5.8.3)
+        version: 2.6.0(@types/node@22.15.12)(typescript@5.8.3)
       '@types/node':
-        specifier: ^22.15.3
-        version: 22.15.3
+        specifier: ^22.15.12
+        version: 22.15.12
       eslint:
         specifier: ^9.26.0
         version: 9.26.0(jiti@2.4.2)
@@ -46,16 +46,16 @@ importers:
     devDependencies:
       '@tailwindcss/vite':
         specifier: ^4.1.5
-        version: 4.1.5(vite@6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2))
+        version: 4.1.5(vite@6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2))
       tailwindcss:
         specifier: ^4.1.5
         version: 4.1.5
       vite:
         specifier: ^6.3.5
-        version: 6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)
+        version: 6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2))
+        version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2))
 
 packages:
 
@@ -630,6 +630,9 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/node@22.15.12':
+    resolution: {integrity: sha512-K0fpC/ZVeb8G9rm7bH7vI0KAec4XHEhBam616nVJCV51bKzJ6oA3luG4WdKoaztxe70QaNjS/xBmcDLmr4PiGw==}
 
   '@types/node@22.15.3':
     resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
@@ -1705,11 +1708,11 @@ snapshots:
 
   '@hypernym/args@0.3.1': {}
 
-  '@hypernym/bundler@0.14.3(@types/node@22.15.3)(typescript@5.8.3)':
+  '@hypernym/bundler@0.14.3(@types/node@22.15.12)(typescript@5.8.3)':
     dependencies:
       '@hypernym/args': 0.3.1
-      '@hypernym/colors': 1.0.3(@types/node@22.15.3)(typescript@5.8.3)
-      '@hypernym/utils': 3.4.3(@types/node@22.15.3)(typescript@5.8.3)
+      '@hypernym/colors': 1.0.3(@types/node@22.15.12)(typescript@5.8.3)
+      '@hypernym/utils': 3.4.3(@types/node@22.15.12)(typescript@5.8.3)
       '@rollup/plugin-alias': 5.1.1(rollup@4.40.1)
       '@rollup/plugin-json': 6.1.0(rollup@4.40.1)
       '@rollup/plugin-node-resolve': 16.0.1(rollup@4.40.1)
@@ -1719,12 +1722,12 @@ snapshots:
       rollup: 4.40.1
       rollup-plugin-dts: 6.2.1(rollup@4.40.1)(typescript@5.8.3)
     optionalDependencies:
-      '@types/node': 22.15.3
+      '@types/node': 22.15.12
       typescript: 5.8.3
 
-  '@hypernym/colors@1.0.3(@types/node@22.15.3)(typescript@5.8.3)':
+  '@hypernym/colors@1.0.3(@types/node@22.15.12)(typescript@5.8.3)':
     optionalDependencies:
-      '@types/node': 22.15.3
+      '@types/node': 22.15.12
       typescript: 5.8.3
 
   '@hypernym/eslint-config@3.6.0(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3)':
@@ -1743,15 +1746,15 @@ snapshots:
     dependencies:
       prettier: 3.5.3
 
-  '@hypernym/tsconfig@2.6.0(@types/node@22.15.3)(typescript@5.8.3)':
+  '@hypernym/tsconfig@2.6.0(@types/node@22.15.12)(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
     optionalDependencies:
-      '@types/node': 22.15.3
+      '@types/node': 22.15.12
 
-  '@hypernym/utils@3.4.3(@types/node@22.15.3)(typescript@5.8.3)':
+  '@hypernym/utils@3.4.3(@types/node@22.15.12)(typescript@5.8.3)':
     optionalDependencies:
-      '@types/node': 22.15.3
+      '@types/node': 22.15.12
       typescript: 5.8.3
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
@@ -1936,16 +1939,20 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.5
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.5
 
-  '@tailwindcss/vite@4.1.5(vite@6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2))':
+  '@tailwindcss/vite@4.1.5(vite@6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2))':
     dependencies:
       '@tailwindcss/node': 4.1.5
       '@tailwindcss/oxide': 4.1.5
       tailwindcss: 4.1.5
-      vite: 6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)
+      vite: 6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2)
 
   '@types/estree@1.0.7': {}
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/node@22.15.12':
+    dependencies:
+      undici-types: 6.21.0
 
   '@types/node@22.15.3':
     dependencies:
@@ -2845,18 +2852,18 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)):
+  vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2)):
     dependencies:
       debug: 4.4.0
       globrex: 0.1.2
       tsconfck: 3.1.5(typescript@5.8.3)
     optionalDependencies:
-      vite: 6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)
+      vite: 6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2):
+  vite@6.3.5(@types/node@22.15.12)(jiti@2.4.2)(lightningcss@1.29.2):
     dependencies:
       esbuild: 0.25.3
       fdir: 6.4.4(picomatch@4.0.2)
@@ -2865,7 +2872,7 @@ snapshots:
       rollup: 4.40.1
       tinyglobby: 0.2.13
     optionalDependencies:
-      '@types/node': 22.15.3
+      '@types/node': 22.15.12
       fsevents: 2.3.3
       jiti: 2.4.2
       lightningcss: 1.29.2
