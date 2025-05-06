@@ -1,5 +1,6 @@
 import type { AnimationOptionsEffect } from './effect'
 import type { AnimationOptionsCustom } from './custom'
+import type { CompositeOperation } from './shared'
 
 export type KeyframeValue = number | string
 export type KeyframeArrayValue = [
@@ -7,9 +8,13 @@ export type KeyframeArrayValue = [
   KeyframeValue,
   ...KeyframeValue[],
 ]
-export type KeyframeObjectValue = Omit<AnimationOptionsEffect, 'driver'> & {
+export type KeyframeObjectValue = Omit<
+  AnimationOptionsEffect,
+  'driver' | 'composite'
+> & {
   value: number | string | KeyframeArrayValue
   offset?: AnimationOptionsCustom['offset']
+  composite?: CompositeOperation
 }
 export type KeyframeValues =
   | number
@@ -73,9 +78,13 @@ export type TransformArrayValue = [
   TransformValue,
   ...TransformValue[],
 ]
-export type TransformObjectValue = Omit<AnimationOptionsEffect, 'driver'> & {
+export type TransformObjectValue = Omit<
+  AnimationOptionsEffect,
+  'driver' | 'composite'
+> & {
   value: number | string | TransformArrayValue
   offset?: AnimationOptionsCustom['offset']
+  composite?: CompositeOperation
 }
 export type TransformValues =
   | number
@@ -113,9 +122,13 @@ export interface AnimationKeyframesTransform {
 
 export type ColorValue = string
 export type ColorArrayValue = [ColorValue, ColorValue, ...ColorValue[]]
-export type ColorObjectValue = Omit<AnimationOptionsEffect, 'driver'> & {
+export type ColorObjectValue = Omit<
+  AnimationOptionsEffect,
+  'driver' | 'composite'
+> & {
   value: string | ColorArrayValue
   offset?: AnimationOptionsCustom['offset']
+  composite?: CompositeOperation
 }
 export type ColorValues = string | ColorArrayValue | ColorObjectValue
 
@@ -141,8 +154,14 @@ export type AnimationOptionsKeyframes = AnimationKeyframesOther &
   AnimationKeyframesTransform &
   AnimationKeyframesColor
 
-export interface GeneratedKeyframe extends AnimationOptionsEffect {
+export interface GeneratedKeyframe {
   key: string
   value: AnimationOptionsKeyframes[keyof AnimationOptionsKeyframes]
+  effect: globalThis.KeyframeAnimationOptions & {
+    rangeStart?: string
+    rangeEnd?: string
+  }
+  ease?: AnimationOptionsEffect['ease']
+  composite?: AnimationOptionsEffect['composite']
   offset?: AnimationOptionsCustom['offset']
 }

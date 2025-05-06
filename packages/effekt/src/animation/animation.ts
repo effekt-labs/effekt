@@ -1,7 +1,6 @@
 import { generateKeyframes } from './generate-keyframes'
-import { createEffect, setEasing } from './create-effect'
 import { config } from '@/config'
-import { noop, isNumber, isArray } from '@/shared'
+import { noop, isNumber, isArray, setDelay, setEasing } from '@/shared'
 import { getElements, msToSec, secToMs, clamp } from '@/utils'
 import type {
   Animation,
@@ -36,16 +35,17 @@ export function createAnimation(
   const els = getElements(targets)
 
   if (els.length) {
-    const keyframes = new WeakMap<Element, GeneratedKeyframe[]>([
-      [els[0], generateKeyframes(options)],
+    const weakKey = {}
+    const keyframes = new WeakMap<WeakKey, GeneratedKeyframe[]>([
+      [weakKey, generateKeyframes(options)],
     ])
 
     for (let i = 0, l = els.length; i < l; i++) {
       const el = els[i]
 
-      for (let kI = 0, kL = keyframes.get(els[0])!.length; kI < kL; kI++) {
-        const keyframe = keyframes.get(els[0])![kI]
-        const { key, value, ease, composite, offset } = keyframe
+      for (let kI = 0, kL = keyframes.get(weakKey)!.length; kI < kL; kI++) {
+        const keyframe = keyframes.get(weakKey)![kI]
+        const { key, value, ease, composite, offset, effect } = keyframe
 
         const animation = el.animate(
           {
@@ -55,7 +55,9 @@ export function createAnimation(
             offset,
           },
           {
-            ...createEffect({ index: i, total: l }, keyframe),
+            ...effect,
+            delay: setDelay(effect.delay ?? 0, i, l),
+            endDelay: setDelay(effect.endDelay ?? 0, i, l),
             timeline: driver,
           },
         )

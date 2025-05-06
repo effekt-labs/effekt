@@ -1,33 +1,16 @@
-import { secToMs, round } from '@/utils'
-import { isFunction, isArray, setDelay, setRepeat } from '@/shared'
-import type { GeneratedKeyframe } from './types'
-import type { EasingFunction } from '@/shared/types'
-
-const parseEasing = (easing: EasingFunction, points: number = 50): string =>
-  `linear(${[...Array(points).keys()]
-    .map((_, i) => (i === points - 1 ? 1 : round(easing(i * (1 / points)), 5)))
-    .join(',')})`
-
-export const setEasing = (easing?: string | EasingFunction): string =>
-  easing
-    ? isFunction(easing)
-      ? parseEasing(easing)
-      : easing
-    : 'cubic-bezier(0.33, 0, 0.33, 1)'
+import { secToMs } from '@/utils'
+import { isArray, setRepeat, setEasing } from '@/shared'
+import type { AnimationOptionsEffect, GeneratedKeyframe } from './types'
 
 export function createEffect(
-  { index, total }: { index: number; total: number },
-  options: GeneratedKeyframe,
-): globalThis.KeyframeAnimationOptions & {
-  rangeStart?: string
-  rangeEnd?: string
-} {
+  effect: AnimationOptionsEffect,
+): GeneratedKeyframe['effect'] {
   const {
     id,
     direction,
-    duration = 0.6,
-    delay = 0,
-    endDelay = 0,
+    duration,
+    delay,
+    endDelay,
     playRate: playbackRate,
     repeat = 0,
     repeatStart: iterationStart,
@@ -38,14 +21,14 @@ export function createEffect(
     repeatComposite: iterationComposite,
     start: rangeStart,
     end: rangeEnd,
-  } = options
+  } = effect
 
   return {
     id,
     direction,
-    duration: secToMs(duration),
-    delay: setDelay(delay, index, total),
-    endDelay: setDelay(endDelay, index, total),
+    duration: secToMs(duration!),
+    delay,
+    endDelay,
     playbackRate,
     iterations: setRepeat(repeat),
     iterationStart,
@@ -56,5 +39,5 @@ export function createEffect(
     iterationComposite,
     rangeStart,
     rangeEnd,
-  }
+  } as GeneratedKeyframe['effect']
 }
