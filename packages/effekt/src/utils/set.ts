@@ -1,10 +1,10 @@
 import { isUndefined, setUnit, rgxIsTransform } from '@/shared'
 import { getElements } from './get-elements'
-import type { AnimationTargets, GeneratedKeyframe } from '@/animation/types'
-import type { SetOptions } from './types'
+import type { AnimationTargets } from '@/animation/types'
+import type { SetOptions, GeneratedSetKeyframe } from './types'
 
-const generateSetKeyframes = (options: SetOptions): GeneratedKeyframe[] => {
-  const keyframes: GeneratedKeyframe[] = []
+const generateSetKeyframes = (options: SetOptions): GeneratedSetKeyframe[] => {
+  const keyframes: GeneratedSetKeyframe[] = []
   const transforms: string[] = []
 
   for (const [key, value] of Object.entries(options)) {
@@ -51,15 +51,16 @@ export function set(targets: AnimationTargets, options: SetOptions): void {
   const els = getElements(targets)
   if (!els.length) return
 
-  const keys = new WeakMap<Element, GeneratedKeyframe[]>([
-    [els[0], generateSetKeyframes(options)],
+  const weakKey = {}
+  const keys = new WeakMap<WeakKey, GeneratedSetKeyframe[]>([
+    [weakKey, generateSetKeyframes(options)],
   ])
 
   for (let i = 0, l = els.length; i < l; i++) {
     const el = els[i] as HTMLElement
 
-    for (let kI = 0, kL = keys.get(els[0])!.length; kI < kL; kI++) {
-      const { key, value } = keys.get(els[0])![kI]
+    for (let kI = 0, kL = keys.get(weakKey)!.length; kI < kL; kI++) {
+      const { key, value } = keys.get(weakKey)![kI]
       const p = key as any
       if (!isUndefined(el.style[p])) el.style[p] = `${value}`
     }
