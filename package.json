@@ -17,17 +17,12 @@
     "create:release": "sh -c 'gh workflow run release --ref main --field package_name=$1' --",
     "update:all": "taze -r --interactive"
   },
-  "packageManager": "pnpm@10.10.0",
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=10.0.0"
-  },
   "devDependencies": {
-    "@hypernym/bundler": "^0.14.3",
-    "@hypernym/eslint-config": "^3.6.0",
-    "@hypernym/prettier-config": "^3.2.3",
-    "@hypernym/tsconfig": "^2.6.0",
-    "@types/node": "^22.15.12",
+    "@hypernym/bundler": "^0.14.4",
+    "@hypernym/eslint-config": "^3.6.1",
+    "@hypernym/prettier-config": "^3.2.4",
+    "@hypernym/tsconfig": "^2.6.1",
+    "@types/node": "^22.15.18",
     "eslint": "^9.26.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"

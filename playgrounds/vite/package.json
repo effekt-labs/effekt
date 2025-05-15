@@ -11,8 +11,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.5",
-    "tailwindcss": "^4.1.5",
+    "@tailwindcss/vite": "^4.1.6",
+    "tailwindcss": "^4.1.6",
     "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   }
